@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push to dokku
+      - name: Push app to dokku
         uses: dokku/github-action@master
         with:
           git_remote_url: 'ssh://dokku@45.56.127.246:22/django-app'
