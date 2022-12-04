@@ -12,5 +12,5 @@ jobs:
         name: Push to dokku
         uses: dokku/github-action@master
         with:
-            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
             git_remote_url: 'ssh://dokku@45.56.127.246:22/django_app'           
