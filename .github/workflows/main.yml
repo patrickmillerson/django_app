@@ -12,7 +12,7 @@ jobs:
         with:
             fetch-depth: 0
       - id: deploy
-        name: Deploy to dokku
+        name: Deploy django to dokku
         uses: idoberko2/dokku-deploy-github-action@v1
         with:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
