@@ -16,5 +16,5 @@ jobs:
         uses: idoberko2/dokku-deploy-github-action@v1
         with:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-            dokku-host: 'dokku@45.56.127.246'
+            dokku-host: '45.56.127.246'
             app-name: 'django-app'   
