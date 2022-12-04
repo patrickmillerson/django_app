@@ -1,20 +1,22 @@
 ---
 name: 'deploy'
 
-# yamllint disable-line rule:truthy
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Cloning repo
+        uses: actions/checkout@v2
         with:
-            fetch-depth: 0
-      - id: deploy
-        name: Deploy django to dokku
-        uses: idoberko2/dokku-deploy-github-action@v1
+          fetch-depth: 0
+
+      - name: Push to dokku
+        uses: dokku/github-action@master
         with:
-            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-            dokku-host: '45.56.127.246'
-            app-name: 'django-app'   
+          git_remote_url: 'ssh://dokku@45.56.127.246:22/django-app'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
