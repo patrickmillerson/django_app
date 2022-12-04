@@ -2,10 +2,7 @@
 name: 'deploy'
 
 # yamllint disable-line rule:truthy
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
   deploy:
