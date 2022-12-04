@@ -21,5 +21,5 @@ jobs:
         with:
           #git_remote_url: 'ssh://dokku@45.56.127.246:22/django-app'
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          dokku-host: 45.56.127.246
-          app-name: django-app
+          dokku-host: '45.56.127.246'
+          app-name: 'django-app'
