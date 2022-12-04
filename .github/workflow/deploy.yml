@@ -1,9 +1,6 @@
 name: Deploy dokku
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
   deploy:
