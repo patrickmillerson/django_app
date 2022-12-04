@@ -1,25 +1,23 @@
----
-name: 'deploy'
+name: Deploy
 
 on:
   push:
     branches:
       - master
-      - main
 
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Cloning repo
-        uses: actions/checkout@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Push app to dokku
+      - name: Deploy to dokku
         uses: idoberko2/dokku-deploy-github-action@v1
         with:
-          #git_remote_url: 'ssh://dokku@45.56.127.246:22/django-app'
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          dokku-host: '45.56.127.246'
-          app-name: 'django-app'
+            ssh-private-key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+            dokku-host: '45.56.127.246'
+            app-name: 'django-app'
+            git-push-flags: --force
