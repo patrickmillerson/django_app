@@ -1,26 +1,20 @@
----
-name: 'deploy'
+name: CD
 
-# yamllint disable-line rule:truthy
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-18.04
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Cloning repo
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Set up qemu
-        uses: docker/setup-qemu-action@v2
-
-      - name: Set up docker buildx
-        uses: docker/setup-buildx-action@v2           
-
-      - name: Push to dokku
-        uses: dokku/github-action@master
-        with:
-            git_remote_url: 'ssh://dokku@smartenovation.website:22/django-app'
-            ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}      
+    - uses: actions/checkout@v1
+    - name: Dokku deploy
+      uses: vitalyliber/dokku-github-action@v7.0
+      env:
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        HOST: ${{ secrets.HOST }}
+        PROJECT: ${{ secrets.PROJECT }}
